@@ -8,18 +8,20 @@ import matplotlib.image
 from model import CNN
 import time
 from datetime import datetime
-
+import pandas as pd
 
 ## TODO:
 # * Datensatz von SK Learn noch als Dataframe darstellen
 # * Eigenen Datensatz der erstellt wird als Dataframe
+# * Learning Costs Neuronales Netz darstellen
 
 
 def main():
     st.title("Number Recognition Demo")
 
-    # load image data
-    number_data = load_digits()
+    # INTRODUCTION TO DATASET
+    number_data = load_digits()  # load image data
+
     idx = st.number_input(
         label="Select an image between 0 and 1796!",
         min_value=0,
@@ -30,17 +32,16 @@ def main():
     label = number_data.target[idx]
 
     draw_number(img, label, 500)
-
     st.subheader("Image Representation as array")
     st.write(img)
 
-    # model = load_model("../training_model/model.npy")
+    model_params = load_model("./training_model/model.npy")
     canvas_result = display_canvas()
 
     if st.sidebar.button("Convert Imgage"):
         converted_canvas_img = convert_Canvas_to_Img(canvas_result)
 
-        model_params = load_model("./training_model/model.npy")
+        # model_params = load_model("./training_model/model.npy")
         predict_number(model_params, converted_canvas_img)
 
     input = st.sidebar.text_input("Save Image with Label")
@@ -81,7 +82,7 @@ def predict_number(params: dict, img: np.ndarray):
     training_img = training_img.T
     predicted_digit = cnn.predict_L_layer(training_img, params)
     st.subheader("Number Prediction")
-    st.write("Predicted digit is : " + str(predicted_digit))
+    st.write("Predicted digit is : " + str(np.squeeze(predicted_digit)[()]))
 
 
 def display_canvas():
