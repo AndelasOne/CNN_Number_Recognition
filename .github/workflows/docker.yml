@@ -1,4 +1,4 @@
-name: ci
+name: build image
 
 on:
   push:
@@ -26,6 +26,11 @@ jobs:
         id: docker_build
         uses: docker/build-push-action@v2
         with:
+          context: ./
+          platforms: linux/aarch64
+          file: Dockerfile
           push: true
-          tags: andelas_one/number_recognition:latest
+          tags: ghcr.io/andelasone/sentiment-collect:latest
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
 
