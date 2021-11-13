@@ -26,8 +26,8 @@ jobs:
         with:
           context: ./
           platforms: linux/aarch64
-          file: Dockerfile
+          file: ./Dockerfile
           push: true
-          tags: ghcr.io/andelasone/sentiment-collect:latest
+          tags: ghcr.io/andelasone/number_recognition:latest
           cache-from: type=gha
           cache-to: type=gha,mode=max
