@@ -4,8 +4,8 @@ services:
   app:
     image: andelasone/number_recognition
     build:
-      context: .
-      dockerfile: Dockerfile
+      context: ../
+      dockerfile: docker/Dockerfile
     ports:
       - 8501:8501
     restart: unless-stopped
