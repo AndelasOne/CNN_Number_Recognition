@@ -43,6 +43,6 @@ jobs:
           platforms: linux/amd64
           file: docker/Dockerfile
           push: true
-          tags: ghcr.io/andelasone/number_recognition:latest
+          tags: ghcr.io/andelas_one/number_recognition:latest
           cache-from: type=gha
           cache-to: type=gha,mode=max
